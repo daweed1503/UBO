@@ -1,0 +1,133 @@
+! YouTube Fix & Customization by Arch v1.8.4
+! (1/11) YouTube 4 Videos Per Row Fix (Home and Channel Pages) / YouTube Fix & Customization
+youtube.com##ytd-rich-grid-row, #contents.ytd-rich-grid-row:style(display:contents !important;)
+youtube.com##ytd-rich-grid-renderer, html:style(--ytd-rich-grid-items-per-row: 5 !important;)
+youtube.com##ytd-rich-grid-renderer, html:style(--ytd-rich-grid-posts-per-row: 5 !important;)
+! (2/11) YouTube Home Short Section 7 Videos Per Row Fix / YouTube Fix & Customization
+youtube.com##ytd-rich-grid-renderer, html:style(--ytd-rich-grid-slim-items-per-row: 7 !important;)
+youtube.com##ytd-rich-grid-renderer, html:style(--ytd-rich-grid-game-cards-per-row: 7 !important;)
+youtube.com##+js(set-attr, ytd-rich-shelf-renderer, is-show-more-hidden)
+youtube.com##+js(ra, hidden, ytd-rich-item-renderer, stay)
+! (3/11) YouTube Home and Channel Page Margin Fix / YouTube Fix & Customization
+youtube.com##ytd-rich-item-renderer[rendered-from-rich-grid][is-in-first-column]:style(margin-left: calc(var(--ytd-rich-grid-item-margin)/2) !important;)
+youtube.com##ytd-rich-item-renderer[is-slim-grid]:first-of-type, ytd-rich-item-renderer[is-shorts-grid]:first-of-type:style(margin-left: auto !important;)
+youtube.com##ytd-rich-item-renderer[is-slim-grid]:last-of-type, ytd-rich-item-renderer[is-shorts-grid]:last-of-type:style(margin-right: auto !important;)
+! (4/11) YouTube Font Size Fix / YouTube Fix & Customization
+youtube.com###video-title.ytd-rich-grid-media, #video-title.ytd-rich-grid-slim-media:style(font-size: 1.4rem !important; line-height: 2rem !important;)
+youtube.com###metadata-line.ytd-video-meta-block:style(font-size: 1.2rem !important; line-height: 1.8rem !important;)
+! (5/11) YouTube Search Results Video Thumb Size Fix / YouTube Fix & Customization
+youtube.com##ytd-video-renderer[use-bigger-thumbs][bigger-thumbs-style="BIG"] ytd-thumbnail.ytd-video-renderer, ytd-video-renderer[use-bigger-thumbs] ytd-thumbnail.ytd-video-renderer, ytd-radio-renderer[use-bigger-thumbs] ytd-thumbnail.ytd-radio-renderer, #avatar-section.ytd-channel-renderer, ytd-radio-renderer[use-bigger-thumbs][bigger-thumbs-style="BIG"] ytd-playlist-thumbnail.ytd-radio-renderer, ytd-playlist-renderer[use-bigger-thumbs][bigger-thumbs-style="BIG"] ytd-playlist-thumbnail.ytd-playlist-renderer:style(max-width: 360px !important;)
+! (6/11) YouTube Horizontal Scrollbar Fix / YouTube Fix & Customization
+youtube.com##body, ytd-app[scrolling]:style(overflow-x: hidden !important;)
+! Only use these 2 rules below if you set items-per-row and posts-per-row to 5 or 6 from the first filter set, "(1/11) 4 Videos Per Row Fix"
+! (8/11) YouTube Channel Page Videos, Shorts, Live, Podcasts and Playlists Tabs Full Width Video Content (Makes video thumbs to fill the page) / YouTube Fix & Customization
+youtube.com##:matches-path(//videos|/shorts|/streams|/podcasts|/playlists/) ytd-two-column-browse-results-renderer.grid-5-columns, ytd-two-column-browse-results-renderer.grid-6-columns:style(width: 100% !important;)
+youtube.com##ytd-two-column-browse-results-renderer.grid, ytd-rich-grid-renderer[is-shorts-grid] #contents.ytd-rich-grid-renderer:style(max-width: initial !important;)
+! YT Homepage - Hide the Shorts section
+youtube.com##[is-shorts]
+! YT Menu - Hide the Shorts button
+www.youtube.com###guide [title="Shorts"], .ytd-mini-guide-entry-renderer[title="Shorts"]
+! YT Search - Hide Shorts
+www.youtube.com##ytd-search ytd-video-renderer [overlay-style="SHORTS"]:upward(ytd-video-renderer)
+! YT Search and Channels - Hide the Shorts sections
+www.youtube.com##ytd-reel-shelf-renderer
+! YT Channels - Hide the Shorts tab
+www.youtube.com##ytd-browse[page-subtype="channels"] [role="tab"]:nth-of-type(3):has-text(Shorts)
+! YT Subscriptions - Hide Shorts - Grid View
+www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-grid-video-renderer [overlay-style="SHORTS"]:upward(ytd-grid-video-renderer)
+! YT Subscriptions - Hide Shorts - List View
+www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-video-renderer [overlay-style="SHORTS"]:upward(ytd-item-section-renderer)
+! YT Subscriptions - New Layout - Hide Shorts
+www.youtube.com##ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer [overlay-style="SHORTS"]:upward(ytd-rich-item-renderer)
+! YT Sidebar - Hide Shorts
+www.youtube.com###related ytd-compact-video-renderer [overlay-style="SHORTS"]:upward(ytd-compact-video-renderer)
+! YT Search - keep videos and channels
+youtube.com##ytd-search ytd-item-section-renderer>#contents>:not(ytd-video-renderer,ytd-channel-renderer),ytd-secondary-search-container-renderer
+! Prevent stats (such as likes and views) from live-updating
+! Example: https://www.reddit.com/r/youtube/comments/15c7ndi/youtube_has_added_live_updating_view_counts/
+||youtube.com/youtubei/v1/updated_metadata
+
+! Hide "like" animations
+www.youtube.com##[animated-icon-type="LIKE"] g[style="display: none;"]:remove()
+
+! Live reaction overlays
+! Example: https://www.reddit.com/r/youtube/comments/13886xr/how_can_i_disable_the_new_live_emoji_reactions/
+www.youtube.com##yt-reaction-control-panel-view-model
+www.youtube.com##yt-reaction-control-panel-overlay-view-model
+
+! Get verified
+x.com##[aria-label="Get Verified"]    
+! Live spaces
+x.com##[data-testid="sidebarColumn"] [data-testid="placementTracking"]:last-child:upward(1) 
+! Sidebar - Topics to follow
+x.com##[data-testid="sidebarColumn"] [href="/i/topics/picker/home"]:upward(section)
+! Sidebar - What's happening/Trending now/Trends for you
+x.com##[aria-label$="trending now" i]
+! Sidebar - Who to follow/You might like
+x.com##[aria-label="who to follow" i]:upward(1)
+! My Timeline - no inserted sections (Who to follow/Topics to follow, etc.)
+x.com##[aria-label="Timeline: Your Home Timeline"] div[style^="transform: translateY"][style*="position: absolute;"]:not(:first-child:has-text(/^Show \d\d? Tweets?$/)):not(:has(article, [href^="/i/status/"], [role="progressbar"]))
+! Other Timelines - no inserted sections (Who to follow/Topics to follow, etc.)
+x.com##[aria-label$="’s posts"] div[style^="transform: translateY"][style*="position: absolute;"]:not(:has(article, [href^="/i/status/"], [role="progressbar"]))
+! Follow/Recommended Topic | "[Name of Topic] See more"
+x.com##article [aria-label^="Follow Topic"], article [aria-label^="Recommended Topic"]:upward(article)
+! You might like (Suggested tweet)
+x.com##article [d$="2.66 6 1H5z"]:upward(article)
+! Analytics/Views button on tweets
+x.com##article [role=group] [href$="/analytics"]:upward(div:not(:only-child))
+! Views - the new placement in conversation view
+x.com##[aria-label="Timeline: Conversation"] [href*="/status/"] ~ span
+
+! Removes "Suggested for you", "Because you watched [...]" and similar in feed
+www.instagram.com##+js(json-prune, require.0.3.0.__bbox.require.0.3.1.__bbox.result.data.xdt_api__v1__feed__timeline__connection.edges.[-].node.explore_story.media.explore.title)
+www.instagram.com##+js(json-prune-xhr-response, data.xdt_api__v1__feed__timeline__connection.edges.[-].node.explore_story.media.explore.title, , propsToMatch, url:/api/graphql)
+! Removes "Threads" in feed
+www.instagram.com##+js(json-prune, require.0.3.0.__bbox.require.0.3.1.__bbox.result.data.xdt_api__v1__feed__timeline__connection.edges.[-].node.bloks_netego.payload)
+www.instagram.com##+js(json-prune-xhr-response, data.xdt_api__v1__feed__timeline__connection.edges.[-].node.bloks_netego.payload, , propsToMatch, url:/api/graphql)
+! Hides "Threads" hyper-references
+www.instagram.com##a[href="https://www.threads.net/"]
+
+! 2024-05-12 https://www.sofascore.com
+www.sofascore.com##.grHlAa.Box
+
+www.google.com##html:style(overflow: visible !important)
+www.google.com##div[role="dialog"] span:has-text(/^See results closer to you\?$/):upward(7)
+
+! Tiktok: More videos per row
+tiktok.com##[data-e2e="user-post-item-list"]:style(grid-template-columns: repeat(8, 1fr) !important;)
+tiktok.com##[data-e2e="user-liked-item-list"]:style(grid-template-columns: repeat(8, 1fr) !important;)
+tiktok.com##[data-e2e="favorites-item-list"]:style(grid-template-columns: repeat(8, 1fr) !important;)
+tiktok.com##[data-e2e="user-post-item-list"]:style(width: 100% !important;)
+tiktok.com##[data-e2e="user-liked-item-list"]:style(width: 100% !important;)
+tiktok.com##[data-e2e="favorites-item-list"]:style(width: 100% !important;)
+tiktok.com##[class*="ShareLayoutContent"]:style(margin: 0 !important;)
+
+||bunkr.ws/magic/pure-magic-1.js$script,1p,important
+bunkr.*##div.vast_video_loading
+
+! Suggested for you
+www.facebook.com##:is([aria-posinset],[aria-describedby]:not([aria-posinset])) div:not(:only-child)>div:only-child>div:only-child>div:first-child[class=""]>div:not([data-0]):has-text(/^Suggested/):upward([aria-posinset],[aria-describedby]:not([aria-posinset])):style(height: 0 !important; overflow: hidden !important;)
+! Unlabelled Suggested posts (with a Follow/Join buttons)
+www.facebook.com##:is([aria-posinset],[aria-describedby]:not([aria-posinset])) :is(h3,h4) [role=button]:has-text(/Follow|Join/):upward([aria-posinset],[aria-describedby]:not([aria-posinset])):style(height: 0 !important; overflow: hidden !important;)
+! Use only if you actually have these: Suggested posts with the label next to the post date
+www.facebook.com##:is([aria-posinset],[aria-describedby]:not([aria-posinset])):has-text(Suggested for you):style(height: 0 !important; overflow: hidden !important;)
+
+! People You May Know
+www.facebook.com##:is([aria-posinset],[aria-describedby]:not([aria-posinset])):has([href="/friends/"]):style(height: 0 !important; overflow: hidden !important;)
+! Suggested groups
+www.facebook.com##:is([aria-posinset],[aria-describedby]:not([aria-posinset])):has([href="/groups/discover/"]):style(height: 0 !important; overflow: hidden !important;)
+! Reels and short videos
+www.facebook.com##:is([aria-posinset],[aria-describedby]:not([aria-posinset])):has([href="/reel/?s=ifu_see_more"]):style(height: 0 !important; overflow: hidden !important;)
+! Suggested pages
+www.facebook.com##:is([aria-posinset],[aria-describedby]:not([aria-posinset])):has([aria-label="Suggested pages"]):style(height: 0 !important; overflow: hidden !important;)
+
+! Reddit - Block loader of nsfw modal
+||www.redditstatic.com/shreddit/*/xpromo-nsfw-blocking-modal*.js$script,domain=reddit.com
+! Reddit - Hide prompt in single post, backdrop overlay
+reddit.com##.prompt
+reddit.com##.bg-scrim
+reddit.com##.overlay
+! Reddit - Remove blur, backdrop...
+reddit.com##.blurred:style(filter: unset !important; background: unset !important; pointer-events: unset !important; display: unset !important;)
+reddit.com##.outer:style(height: unset !important;)
+
